@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: password
+  host: localhost
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: flixxer_development
+
+test:
+  <<: *default
+  database: flixxer_test
+
+production:
+  <<: *default
+  database: flixxer_production
+  ## username: flixxer
+  ## password: <%= ENV['FLIXXER_DATABASE_PASSWORD'] %>
