@@ -1,35 +1,34 @@
 <script>
-$(function() {
-  $('.new-lesson-button').click(function( event ) {
-  var lessonUrl = $( event.target).data('lesson-url');
-  $('#newLessonForm').attr('action', lessonUrl);
-});
-
+  $(function() {
+    $('.new-lesson-button').click(function( event ) {
+      var lessonURL=  $(event.target).data('lesson-url');
+      $('#newLessonForm').attr('action', lessonURL);
+    });
+  });
   $(function() {
     $('.lessons').sortable({
       update: function( event, ui ) {
         $.ajax({
           type: 'PUT',
           url: ui.item.data('update-url'),
-          dataType: 'json',
-          data: { lesson: { row_order_position: ui.item.index() } }
+          dataType: 'json', 
+          data: { lesson: { row_order_position: ui.item.index() }}
         });
       }
     });
-   });
-
-   $(function() {
+  });
+  $(function() {
     $('.sections').sortable({
       update: function( event, ui ) {
         $.ajax({
           type: 'PUT',
           url: ui.item.data('update-url'),
           dataType: 'json',
-          data: { section: { row_order_position: ui.item.index() } }
+          data: { section: { row_order_position: ui.item.index() }}
         });
       }
     });
-   });
+  });
 </script>
 
 
@@ -52,10 +51,10 @@ $(function() {
             <span class="fa fa-ellipsis-v"></span>
               <%= section.title %>
             </div>
-            <!-- LESSON trigger modal -->
-            <button type="button" class="btn btn-primary btn-lg float-right new-lesson-button" data-toggle="modal" data-target="newLessonModal" data-lesson-url="<%= instructor_section_lessons_path(section) %>">
-              New Lesson...
-            </button>
+<!-- LESSON trigger modal -->
+  <button type="button" class="btn btn-primary btn-lg float-right new-lesson-button" data-toggle="modal" data-target="#newLessonModal" data-lesson-url="<%= instructor_section_lessons_path(section) %>">
+  New Lesson...
+</button>
             
            <br class="clr" /> 
            <br class="clr" />
@@ -102,6 +101,7 @@ $(function() {
         <%= f.input :title %>
         </div>
       <div class="modal-footer">
+
         <%= f.submit "Add a section", class: 'btn btn-primary' %>
       </div>
       <% end %>
@@ -127,11 +127,7 @@ $(function() {
           <%= f.input :subtitle %>
           <%= f.input :video %>
           </div>
-          
-          <br />
-          <br />
-        <% end %>
-      </div>
+        
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <%= f.submit "Add the lesson", class: 'btn btn-primary' %>
