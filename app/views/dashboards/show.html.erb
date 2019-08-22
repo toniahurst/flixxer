@@ -7,7 +7,7 @@
     	<%= link_to course.title, course_path(course) %>
 	</h3>
 	<br />
-	<%= image_tag course.image, class: 'img-fluid' %>
+	<%= image_tag course.image.to_s, class: 'img-fluid' %>
 	<br />
 	<div class="row">
       <div class="col-12 col-sm-8">
@@ -20,13 +20,14 @@
 <hr class="col-8 offset-2">
     <br class="clr" />
   <% end %>
+
     <h1>What I'm Teaching</h1>
   <% current_user.courses.each do |course| %>
     <h3 class="text-center">
       <%= link_to course.title, course_path(course) %>
     </h3>
     <br />
-    <%= image_tag course.image, class: 'img-fluid' %>
+    <%= image_tag course.image.to_s, class: 'img-fluid' %>
     <br />
     <div class="row">
     <div class="col-12 col-sm-8">
